@@ -2,8 +2,9 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.17 (Ubuntu 12.17-1.pgdg22.04+1)
--- Dumped by pg_dump version 12.17 (Ubuntu 12.17-1.pgdg22.04+1)
+
+-- Dumped from database version 16.9 (Ubuntu 16.9-0ubuntu0.24.04.1)
+-- Dumped by pg_dump version 16.9 (Ubuntu 16.9-0ubuntu0.24.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +22,7 @@ DROP DATABASE worldcup;
 -- Name: worldcup; Type: DATABASE; Schema: -; Owner: freecodecamp
 --
 
-CREATE DATABASE worldcup WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
+CREATE DATABASE worldcup WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'ru_RU.UTF-8';
 
 
 ALTER DATABASE worldcup OWNER TO freecodecamp;
@@ -50,7 +51,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.games (
     game_id integer NOT NULL,
     year integer NOT NULL,
-    round character varying(20) NOT NULL,
+    round character varying NOT NULL,
     winner_id integer NOT NULL,
     opponent_id integer NOT NULL,
     winner_goals integer NOT NULL,
@@ -73,7 +74,7 @@ CREATE SEQUENCE public.games_game_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.games_game_id_seq OWNER TO freecodecamp;
+ALTER SEQUENCE public.games_game_id_seq OWNER TO freecodecamp;
 
 --
 -- Name: games_game_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
@@ -88,7 +89,7 @@ ALTER SEQUENCE public.games_game_id_seq OWNED BY public.games.game_id;
 
 CREATE TABLE public.teams (
     team_id integer NOT NULL,
-    name character varying(20) NOT NULL
+    name text NOT NULL
 );
 
 
@@ -107,7 +108,7 @@ CREATE SEQUENCE public.teams_team_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teams_team_id_seq OWNER TO freecodecamp;
+ALTER SEQUENCE public.teams_team_id_seq OWNER TO freecodecamp;
 
 --
 -- Name: teams_team_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
